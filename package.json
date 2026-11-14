@@ -8,7 +8,8 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "check:local": "node tooling/check-local.mjs"
+    "check:local": "node tooling/check-local.mjs",
+    "build": "node tooling/compile.mjs"
   },
   "devDependencies": {
     "ethers": "6.17.0",
