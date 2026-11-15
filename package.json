@@ -10,7 +10,8 @@
   "scripts": {
     "check:local": "node tooling/check-local.mjs",
     "build": "node tooling/compile.mjs",
-    "test": "npm run build && node --test --test-reporter=spec"
+    "test": "npm run build && node --test --test-reporter=spec",
+    "demo": "npm run build && node scripts/demo.mjs"
   },
   "devDependencies": {
     "ethers": "6.17.0",

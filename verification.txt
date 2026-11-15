@@ -1,0 +1,76 @@
+Recorded on the final candidate from a fresh worktree. The demo and tests use simulation credits only.
+
+$ node -v
+v24.22.1
+
+$ npm ci --ignore-scripts --no-audit --no-fund --offline
+added 74 packages in 3s
+
+$ npm run check:local
+> web3-esports-trust-protocol-prototype@1.0.0 check:local
+> node tooling/check-local.mjs
+
+Local in-memory chain ready (chain ID 31337).
+
+$ npm test
+> web3-esports-trust-protocol-prototype@1.0.0 test
+> npm run build && node --test --test-reporter=spec
+
+
+> web3-esports-trust-protocol-prototype@1.0.0 build
+> node tooling/compile.mjs
+
+Built TournamentEscrow with Solidity 0.8.30+commit.73712a01.Emscripten.clang.
+✔ deployment fixes the roles, rules, pool and challenge window (298.020346ms)
+✔ deployment rejects overlapping roles, zero rules and indivisible pools (57.392482ms)
+✔ registration is free and excludes duplicate entries and event roles (42.256168ms)
+✔ only the sponsor can reserve the pool once with a funding reference (37.536251ms)
+✔ only the organizer can start after funding and at least three entries (71.561987ms)
+✔ only the result reporter can post a distinct registered podium with evidence (85.641731ms)
+✔ a challenge requires a registered player and a nonzero reference (94.647961ms)
+✔ the exact deadline closes challenges and permits finalization (93.538524ms)
+✔ an open dispute freezes awards and only the reviewer may correct the ranking (127.167408ms)
+✔ an early review does not bypass the original challenge deadline (95.034728ms)
+✔ uncontested awards distribute the entire pool once without holding Ether (94.446567ms)
+✔ only the settlement reporter can record a nonzero receipt after awards (101.75248ms)
+✔ the organizer may cancel registration and return the reserve only once (46.531829ms)
+✔ only the reviewer can cancel an active event before a result is posted (75.153003ms)
+✔ cancelling a disputed event restores the sponsor balance and prevents awards (140.718249ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1659.667876
+
+$ npm run demo
+> web3-esports-trust-protocol-prototype@1.0.0 demo
+> npm run build && node scripts/demo.mjs
+
+
+> web3-esports-trust-protocol-prototype@1.0.0 build
+> node tooling/compile.mjs
+
+Built TournamentEscrow with Solidity 0.8.30+commit.73712a01.Emscripten.clang.
+Local tournament demo — simulated credits only
+
+1. Deployed: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+   Rules hash: 0x914babdcf14730f176125a920307943412eb70111c50a287ff779ff91a6981ec
+2. 4 players joined for free. Reserved: 10000 credits.
+3. Proposed ranking: Player A, Player B, Player C.
+   Evidence hash: 0x67974db428c08fb9229577548c3e881937cfadef3b6dc7fee6a27f24c99f090c
+4. Challenge recorded. Awards remain blocked during review.
+   Challenge hash: 0x44b30aed3b79963b570ac34e31513db466be8672be99755b44da53f576764677
+5. Reviewer approves a corrected ranking. Original result retained.
+   Decision hash: 0x5be0483a8f72ddc92ff3ee20e8993909ad86df0493eab3cb95d0c7edcdcff12d
+6. Challenge window closed. Final test credit awards:
+   1. Player B: 5000 credits
+   2. Player A: 3000 credits
+   3. Player D: 2000 credits
+   Total awarded: 10000 of 10000 credits.
+7. State: Settled (simulation).
+   Receipt hash: 0xee6224e673391e0841a3f923e38ad259f3c1d91302ebd9d22734fceab1ec735a
+
+No money, tokens, or external payment provider were used.
